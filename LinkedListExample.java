@@ -20,7 +20,13 @@ class LinkedList {
      */
     public void prepend(int value) {
         // Just add at the beginning
-        this.root = new Node(value, this.root);
+        Node newNode = new Node(value, this.root);
+        if (this.root == null) {
+            this.root = newNode;
+            return;
+        }
+        newNode.next = this.root;
+        this.root = newNode;
     }
     /**
      * Adds the value to the _end_ of the list
@@ -40,8 +46,8 @@ class LinkedList {
         // Otherwise, loop until the end and add at the end with a null
         while(n.next != null) {
             n = n.next;
-            n.next = new Node(value, null);
         }
+        n.next = new Node(value, null);
     }
     /**
      * @return the value of the first element in the list
